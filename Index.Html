@@ -3,99 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GamingDen - Pro</title>
+    <title>XRbet.com - শ্রেষ্ঠ গেমিং পোর্টাল</title>
     <style>
-        :root { --gold: #f3b105; --dark-bg: #051612; --card-bg: #0f3d32; --green-border: #2d8a6b; }
-        body { margin: 0; background: var(--dark-bg); color: white; font-family: 'Segoe UI', Tahoma, sans-serif; padding-bottom: 70px; }
-
-        /* হেডার ও ব্যালেন্স */
-        .header { background: #0a251e; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--green-border); position: sticky; top: 0; z-index: 1000; }
-        .logo { color: var(--gold); font-size: 22px; font-weight: bold; letter-spacing: 1px; }
-        .balance { border: 1px solid var(--gold); padding: 5px 12px; border-radius: 20px; color: var(--gold); font-weight: bold; font-size: 14px; }
-
-        /* মেইন ব্যানার */
-        .hero-banner { width: 100%; height: 180px; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1540747913346-19e3adcc174b?w=800'); background-size: cover; background-position: center; display: flex; align-items: center; padding: 20px; box-sizing: border-box; border-bottom: 4px solid var(--green-border); }
-        .hero-banner h1 { margin: 0; font-size: 26px; text-shadow: 2px 2px 10px black; color: #fff; }
-
-        /* ক্যাটাগরি স্লাইডার */
-        .category-slider { display: flex; overflow-x: auto; padding: 15px 10px; gap: 12px; background: #071d18; border-bottom: 1px solid #1a4d3e; }
-        .category-slider::-webkit-scrollbar { display: none; }
-        .cat-item { min-width: 90px; background: var(--card-bg); border-radius: 12px; padding: 12px 5px; text-align: center; border: 1px solid #1a5c4b; cursor: pointer; }
-        .cat-item img { width: 35px; height: 35px; margin-bottom: 8px; }
-        .cat-item span { font-size: 11px; font-weight: bold; color: #fff; display: block; text-transform: uppercase; }
-
-        /* গেম সেকশন */
-        .main-container { padding: 15px; }
-        .section-header { display: flex; align-items: center; margin-bottom: 15px; }
-        .section-header h3 { font-size: 14px; color: var(--gold); margin: 0; padding-left: 10px; border-left: 4px solid #6ab344; text-transform: uppercase; }
-
-        /* গেম কার্ড গ্রিড */
-        .game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .game-card { background: #101929; border-radius: 12px; overflow: hidden; border: 1px solid #1e2a3f; position: relative; }
-        .game-card img { width: 100%; height: 100px; object-fit: cover; opacity: 0.8; }
-        .game-card .play-label { position: absolute; top: 10px; left: 10px; background: var(--gold); color: black; font-size: 9px; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
-        .game-title { padding: 10px; font-size: 12px; font-weight: bold; text-align: center; background: #0a251e; color: #f3f3f3; }
-
-        /* বটম নেভিগেশন */
-        .footer { position: fixed; bottom: 0; width: 100%; background: #0a251e; display: flex; justify-content: space-around; padding: 12px; border-top: 1px solid var(--green-border); }
-        .footer-link { text-align: center; color: #8cbba7; text-decoration: none; font-size: 10px; }
-        .footer-link.active { color: var(--gold); }
+        /* CSS অংশ - এটি আপনার সাইটকে সুন্দর করবে */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0f172a;
+            color: white;
+            text-align: center;
+        }
+        header {
+            background: linear-gradient(90deg, #1e293b, #334155);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #38bdf8;
+            text-transform: uppercase;
+        }
+        .container {
+            padding: 50px 20px;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+        .btn {
+            background-color: #38bdf8;
+            color: #0f172a;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 1.2em;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #7dd3fc;
+            transform: scale(1.05);
+        }
+        .footer {
+            margin-top: 50px;
+            font-size: 0.8em;
+            color: #475569;
+        }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <div class="logo">GAMINGDEN</div>
-        <div class="balance">৳ 500.00</div>
-    </div>
+    <header>
+        <div class="logo">XRbet.com</div>
+    </header>
 
-    <div class="hero-banner">
-        <h1>NBA WIN SHOT</h1>
-    </div>
-
-    <div class="category-slider">
-        <div class="cat-item">
-            <img src="https://img.icons8.com/color/64/cricket.png">
-            <span>CRICKET</span>
-        </div>
-        <div class="cat-item">
-            <img src="https://img.icons8.com/color/64/casino.png">
-            <span>CASINO</span>
-        </div>
-        <div class="cat-item">
-            <img src="https://img.icons8.com/color/64/slot-machine.png">
-            <span>SLOTS</span>
-        </div>
-        <div class="cat-item">
-            <img src="https://img.icons8.com/color/64/football.png">
-            <span>SOCCER</span>
-        </div>
-    </div>
-
-    <div class="main-container">
-        <div class="section-header">
-            <h3>Popular Free Games</h3>
-        </div>
-
-        <div class="game-grid">
-            <div class="game-card">
-                <div class="play-label">FREE PLAY</div>
-                <img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=300">
-                <div class="game-title">Aviator Demo</div>
-            </div>
-            <div class="game-card">
-                <div class="play-label">FREE PLAY</div>
-                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300">
-                <div class="game-title">Fruit Party</div>
-            </div>
-        </div>
+    <div class="container">
+        <h1>স্বাগতম আমাদের গেমিং পোর্টালে</h1>
+        <p>সেরা গেম এবং দারুণ অভিজ্ঞতার জন্য আজই যুক্ত হোন।</p>
+        <a href="#" class="btn">এখনই খেলা শুরু করুন</a>
     </div>
 
     <div class="footer">
-        <a href="#" class="footer-link active">🏠<br>Home</a>
-        <a href="#" class="footer-link">🎁<br>Promo</a>
-        <a href="#" class="footer-link">👤<br>Account</a>
+        &copy; 2026 XRbet.com | সর্বস্বত্ব সংরক্ষিত
     </div>
 
 </body>
 </html>
+
