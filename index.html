@@ -1,142 +1,177 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XRbet - Best Online Gaming</title>
+    <title>XRbet - Pro Sports & Casino</title>
     <style>
-        body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #0b0e11;
-            color: white;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background-color: #f4f6f8; color: #333; padding-bottom: 70px; }
 
-        /* হেডার ডিজাইন */
+        /* টপ হেডার */
         header {
-            background-color: #1a1d23;
-            padding: 10px 20px;
+            background-color: #1a232e;
+            padding: 10px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: white;
             position: sticky;
             top: 0;
-            z-index: 100;
-            border-bottom: 2px solid #f3ba2f;
+            z-index: 1000;
         }
-        .logo { color: #f3ba2f; font-size: 22px; font-weight: bold; }
-        .auth-btns .login { color: white; text-decoration: none; margin-right: 15px; font-weight: bold; }
-        .auth-btns .reg { background: #f3ba2f; color: black; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; }
+        .logo { color: #fff; font-size: 20px; font-weight: bold; text-transform: uppercase; }
+        .auth-btns a { text-decoration: none; font-size: 14px; font-weight: bold; padding: 8px 12px; border-radius: 4px; margin-left: 5px; }
+        .login { color: #fff; border: 1px solid #444; }
+        .reg { background-color: #e91e63; color: white; }
 
-        /* ব্যানার সেকশন */
-        .banner {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://img.freepik.com/free-vector/gradient-casino-background_23-2148924147.jpg');
-            background-size: cover;
-            background-position: center;
+        /* প্রমোশন স্লাইডার সিমুলেশন */
+        .promo-slider {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            overflow-x: auto;
+            padding: 15px;
+            gap: 10px;
+            background: white;
         }
-        .banner h1 { color: #f3ba2f; margin: 0; font-size: 24px; }
-        .banner p { margin: 5px 0; font-size: 14px; }
+        .promo-card {
+            min-width: 140px;
+            height: 180px;
+            background: #eee;
+            border-radius: 8px;
+            background-size: cover;
+            display: flex;
+            align-items: flex-end;
+            padding: 10px;
+            font-size: 11px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+        }
 
-        /* গেম সেকশন */
-        .content { padding: 20px; }
-        h2 { border-left: 4px solid #f3ba2f; padding-left: 10px; font-size: 18px; margin-bottom: 20px; }
-
-        .game-grid {
+        /* গেম ক্যাটাগরি আইকন */
+        .game-icons {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(5, 1fr);
+            padding: 15px;
+            gap: 10px;
+            background: white;
+            margin-top: 5px;
         }
-        .game-card {
-            background: #1e2329;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid #333;
+        .icon-item { text-align: center; font-size: 11px; font-weight: bold; }
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff5722, #f44336);
+            margin: 0 auto 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
         }
-        .game-card img { width: 100%; height: 120px; object-fit: cover; }
-        .game-name { padding: 10px; font-size: 14px; text-align: center; font-weight: bold; }
-        .play-btn { 
-            display: block; 
-            background: #2b3139; 
-            color: #f3ba2f; 
-            text-align: center; 
-            padding: 8px; 
-            text-decoration: none; 
-            font-size: 12px;
-            border-top: 1px solid #333;
+
+        /* লাইভ স্পোর্টস কার্ড */
+        .live-section { padding: 15px; }
+        .section-title { font-size: 16px; font-weight: bold; margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .sport-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
+        .match-info { font-size: 13px; color: #666; margin-bottom: 8px; }
+        .match-teams { font-weight: bold; font-size: 15px; display: flex; justify-content: space-between; }
 
         /* বটম নেভিগেশন */
         .bottom-nav {
             position: fixed;
             bottom: 0;
             width: 100%;
-            background: #1a1d23;
+            background: #fff;
             display: flex;
             justify-content: space-around;
-            padding: 12px 0;
-            border-top: 1px solid #333;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+            z-index: 1000;
         }
-        .bottom-nav a { color: #848e9c; text-decoration: none; font-size: 11px; text-align: center; }
-        .bottom-nav a i { display: block; font-size: 18px; margin-bottom: 4px; }
+        .nav-item { text-align: center; color: #888; text-decoration: none; font-size: 12px; }
+        .nav-item.active { color: #007bff; }
+        .bet-slip {
+            width: 50px;
+            height: 50px;
+            background: #007bff;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -25px;
+            border: 5px solid #f4f6f8;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">XRbet</div>
+        <div class="logo">XRbet 🚩</div>
         <div class="auth-btns">
-            <a href="#" class="login">LOG IN</a>
-            <a href="#" class="reg">REGISTRATION</a>
+            <a href="#" class="login">Log in</a>
+            <a href="#" class="reg">Registration</a>
         </div>
     </header>
 
-    <div class="banner">
-        <h1>100% WELCOME BONUS</h1>
-        <p>এখনই রেজিস্ট্রেশন করে জিতে নিন আকর্ষণীয় বোনাস!</p>
-        <a href="#" class="reg" style="margin-top: 10px;">CLAIM NOW</a>
+    <div class="promo-slider">
+        <div class="promo-card" style="background-image: url('https://img.freepik.com/free-vector/casino-bonuses-banners-set_23-2148818401.jpg');">BONUS FOR SPORTS</div>
+        <div class="promo-card" style="background-image: url('https://img.freepik.com/free-photo/vibrant-night-city-with-neon-lights_23-2151654157.jpg');">UEFA BOOST</div>
+        <div class="promo-card" style="background-image: url('https://img.freepik.com/free-vector/gradient-casino-background_23-2148924147.jpg');">FREEBET HOUR</div>
     </div>
 
-    <div class="content">
-        <h2>TOP GAMES</h2>
-        <div class="game-grid">
-            <div class="game-card">
-                <img src="https://socialtournament.app/wp-content/uploads/2021/02/Gates-of-Olympus-Logo.jpg" alt="Gates of Olympus">
-                <div class="game-name">Gates of Olympus</div>
-                <a href="https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20olympgate&lang=en&cur=USD" class="play-btn">PLAY NOW</a>
+    <div class="game-icons">
+        <div class="icon-item"><div class="icon-circle">🎰</div>Crash</div>
+        <div class="icon-item"><div class="icon-circle">💎</div>Crystal</div>
+        <div class="icon-item"><div class="icon-circle">🃏</div>21</div>
+        <div class="icon-item"><div class="icon-circle">🎡</div>Las Vegas</div>
+        <div class="icon-item"><div class="icon-circle">⚡</div>More</div>
+    </div>
+
+    <div class="live-section">
+        <div class="section-title">LIVE (757) <span style="color:#007bff; font-size:12px;">MORE LIVE ></span></div>
+        
+        <div class="sport-card">
+            <div class="match-info">⚽ Football - UEFA Champions League</div>
+            <div class="match-teams">
+                <span>Real Madrid</span>
+                <span>2</span>
             </div>
-            <div class="game-card">
-                <img src="https://img.freepik.com/free-vector/aviator-game-banner_23-2149503463.jpg" alt="Aviator">
-                <div class="game-name">Aviator Live</div>
-                <a href="#" class="play-btn">PLAY NOW</a>
+            <div class="match-teams">
+                <span>Man City</span>
+                <span>1</span>
             </div>
-            <div class="game-card">
-                <img src="https://img.freepik.com/free-photo/vibrant-night-city-with-neon-lights_23-2151654157.jpg" alt="Crash Game">
-                <div class="game-name">Crash Game</div>
-                <a href="#" class="play-btn">PLAY NOW</a>
+        </div>
+
+        <div class="sport-card">
+            <div class="match-info">🏀 Basketball - NBA</div>
+            <div class="match-teams">
+                <span>Lakers</span>
+                <span>102</span>
             </div>
-            <div class="game-card">
-                <img src="https://img.freepik.com/free-vector/casino-slot-machine-banner_23-2148924147.jpg" alt="Crystal Slot">
-                <div class="game-name">Crystal Slot</div>
-                <a href="#" class="play-btn">PLAY NOW</a>
+            <div class="match-teams">
+                <span>Warriors</span>
+                <span>98</span>
             </div>
         </div>
     </div>
 
-    <div style="height: 70px;"></div> <div class="bottom-nav">
-        <a href="#">🏠<br>Home</a>
-        <a href="#">⚽<br>Sports</a>
-        <a href="#">🎰<br>Casino</a>
-        <a href="#">🎁<br>Promo</a>
-        <a href="#">👤<br>Account</a>
-    </div>
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item">🏆<br>Sports</a>
+        <a href="#" class="nav-item">🎰<br>Casino</a>
+        <a href="#" class="nav-item"><div class="bet-slip">📝</div>Bet Slip</a>
+        <a href="#" class="nav-item">👤<br>Log in</a>
+        <a href="#" class="nav-item">☰<br>Menu</a>
+    </nav>
 
 </body>
 </html>
