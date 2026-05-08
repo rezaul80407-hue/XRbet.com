@@ -3,175 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XRbet - Pro Sports & Casino</title>
+    <title>XRbet - White Colorful Edition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: Arial, sans-serif; background-color: #f4f6f8; color: #333; padding-bottom: 70px; }
-
-        /* টপ হেডার */
-        header {
-            background-color: #1a232e;
-            padding: 10px 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .logo { color: #fff; font-size: 20px; font-weight: bold; text-transform: uppercase; }
-        .auth-btns a { text-decoration: none; font-size: 14px; font-weight: bold; padding: 8px 12px; border-radius: 4px; margin-left: 5px; }
-        .login { color: #fff; border: 1px solid #444; }
-        .reg { background-color: #e91e63; color: white; }
-
-        /* প্রমোশন স্লাইডার সিমুলেশন */
-        .promo-slider {
-            display: flex;
-            overflow-x: auto;
-            padding: 15px;
-            gap: 10px;
-            background: white;
-        }
-        .promo-card {
-            min-width: 140px;
-            height: 180px;
-            background: #eee;
-            border-radius: 8px;
-            background-size: cover;
-            display: flex;
-            align-items: flex-end;
-            padding: 10px;
-            font-size: 11px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 1px 1px 2px black;
+        :root {
+            --bg-body: #f4f6f8;
+            --pure-white: #ffffff;
+            --text-main: #202124;
+            --accent-gold: #f3ba2f;
+            --pink: #e91e63;
+            --border-light: #e0e4e9;
         }
 
-        /* গেম ক্যাটাগরি আইকন */
-        .game-icons {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            padding: 15px;
-            gap: 10px;
-            background: white;
-            margin-top: 5px;
-        }
-        .icon-item { text-align: center; font-size: 11px; font-weight: bold; }
-        .icon-circle {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #ff5722, #f44336);
-            margin: 0 auto 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 20px;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-body); color: var(--text-main); padding-bottom: 80px; }
 
-        /* লাইভ স্পোর্টস কার্ড */
-        .live-section { padding: 15px; }
-        .section-title { font-size: 16px; font-weight: bold; margin-bottom: 10px; display: flex; justify-content: space-between; }
-        .sport-card {
-            background: white;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        /* হেডার (ডার্ক রাখা হয়েছে যাতে লোগো ফুটে ওঠে) */
+        header { 
+            background: #1a1d23; padding: 12px 15px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            position: sticky; top: 0; z-index: 1000;
         }
-        .match-info { font-size: 13px; color: #666; margin-bottom: 8px; }
-        .match-teams { font-weight: bold; font-size: 15px; display: flex; justify-content: space-between; }
+        .logo { color: var(--accent-gold); font-size: 22px; font-weight: 900; }
 
-        /* বটম নেভিগেশন */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: #fff;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-            border-top: 1px solid #ddd;
-            z-index: 1000;
+        .auth-btns button { padding: 8px 14px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; }
+        .login-btn { background: #3c4043; color: #fff; margin-right: 5px; }
+        .reg-btn { background: var(--pink); color: #fff; }
+
+        /* সাদা ব্যাকগ্রাউন্ডে রঙিন আইকন */
+        .categories { 
+            display: flex; overflow-x: auto; padding: 20px 10px; gap: 15px; 
+            scrollbar-width: none; background: var(--pure-white); 
+            margin-bottom: 10px; border-bottom: 1px solid var(--border-light);
         }
-        .nav-item { text-align: center; color: #888; text-decoration: none; font-size: 12px; }
-        .nav-item.active { color: #007bff; }
-        .bet-slip {
-            width: 50px;
-            height: 50px;
-            background: #007bff;
-            border-radius: 50%;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: -25px;
-            border: 5px solid #f4f6f8;
-            font-size: 18px;
+        .cat-item { text-align: center; min-width: 70px; cursor: pointer; }
+        .icon-box { 
+            width: 55px; height: 55px; background: #fff; border-radius: 14px; 
+            display: flex; align-items: center; justify-content: center; 
+            margin: 0 auto 8px; font-size: 26px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid #f0f0f0;
         }
+        
+        /* লোগোর কালারগুলো */
+        .color-crash { color: #ff4500; }    /* উজ্জ্বল কমলা */
+        .color-crystal { color: #00bcd4; }  /* সায়ান */
+        .color-casino { color: #9c27b0; }   /* পার্পল */
+        .color-cricket { color: #2e7d32; }  /* ডিপ গ্রিন */
+
+        .cat-item p { font-size: 11px; color: #5f6368; font-weight: 600; }
+
+        /* লাইভ ম্যাচ কার্ড */
+        .section-title { padding: 10px 15px; font-size: 15px; font-weight: bold; color: #1a1d23; }
+        .match-card { background: var(--pure-white); border-radius: 12px; padding: 15px; margin: 0 15px 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid var(--border-light); }
+        .match-header { font-size: 12px; color: #70757a; display: flex; align-items: center; gap: 5px; margin-bottom: 10px; }
+        .match-row { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 5px; color: #000; }
+
+        /* ডেমো গেম কার্ড */
+        .demo-card { 
+            background: var(--pure-white); border-radius: 15px; padding: 20px; 
+            margin: 0 15px 15px; text-align: center; border: 1px solid var(--border-light);
+        }
+        .play-btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: bold; margin-top: 10px; cursor: pointer; }
+        .btn-gold { background: var(--accent-gold); color: #000; }
+        .btn-pink { background: var(--pink); color: #fff; }
+
+        /* পপ-আপ ফর্ম */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-content { background: var(--pure-white); padding: 25px; border-radius: 15px; width: 85%; max-width: 350px; text-align: center; }
+        .modal-content input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px; }
+
+        /* বটম মেনু (সাদা থিমে রঙিন আইকন) */
+        .bottom-nav { 
+            position: fixed; bottom: 0; width: 100%; background: var(--pure-white); 
+            display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid var(--border-light);
+        }
+        .nav-item { text-align: center; color: #5f6368; font-size: 11px; font-weight: 500; }
+        .nav-item i { font-size: 22px; display: block; margin-bottom: 4px; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">XRbet 🚩</div>
+        <div class="logo">XRBET 🚩</div>
         <div class="auth-btns">
-            <a href="#" class="login">Log in</a>
-            <a href="#" class="reg">Registration</a>
+            <button class="login-btn" onclick="toggleModal('loginModal')">Log in</button>
+            <button class="reg-btn" onclick="toggleModal('regModal')">Registration</button>
         </div>
     </header>
 
-    <div class="promo-slider">
-        <div class="promo-card" style="background-image: url('https://img.freepik.com/free-vector/casino-bonuses-banners-set_23-2148818401.jpg');">BONUS FOR SPORTS</div>
-        <div class="promo-card" style="background-image: url('https://img.freepik.com/free-photo/vibrant-night-city-with-neon-lights_23-2151654157.jpg');">UEFA BOOST</div>
-        <div class="promo-card" style="background-image: url('https://img.freepik.com/free-vector/gradient-casino-background_23-2148924147.jpg');">FREEBET HOUR</div>
-    </div>
-
-    <div class="game-icons">
-        <div class="icon-item"><div class="icon-circle">🎰</div>Crash</div>
-        <div class="icon-item"><div class="icon-circle">💎</div>Crystal</div>
-        <div class="icon-item"><div class="icon-circle">🃏</div>21</div>
-        <div class="icon-item"><div class="icon-circle">🎡</div>Las Vegas</div>
-        <div class="icon-item"><div class="icon-circle">⚡</div>More</div>
-    </div>
-
-    <div class="live-section">
-        <div class="section-title">LIVE (757) <span style="color:#007bff; font-size:12px;">MORE LIVE ></span></div>
-        
-        <div class="sport-card">
-            <div class="match-info">⚽ Football - UEFA Champions League</div>
-            <div class="match-teams">
-                <span>Real Madrid</span>
-                <span>2</span>
-            </div>
-            <div class="match-teams">
-                <span>Man City</span>
-                <span>1</span>
-            </div>
+    <div class="categories">
+        <div class="cat-item">
+            <div class="icon-box color-crash"><i class="fas fa-rocket"></i></div>
+            <p>Crash</p>
         </div>
+        <div class="cat-item">
+            <div class="icon-box color-crystal"><i class="fas fa-gem"></i></div>
+            <p>Crystal</p>
+        </div>
+        <div class="cat-item">
+            <div class="icon-box color-casino"><i class="fas fa-dice"></i></div>
+            <p>Casino</p>
+        </div>
+        <div class="cat-item">
+            <div class="icon-box color-cricket"><i class="fas fa-baseball-ball"></i></div>
+            <p>Cricket</p>
+        </div>
+    </div>
 
-        <div class="sport-card">
-            <div class="match-info">🏀 Basketball - NBA</div>
-            <div class="match-teams">
-                <span>Lakers</span>
-                <span>102</span>
-            </div>
-            <div class="match-teams">
-                <span>Warriors</span>
-                <span>98</span>
-            </div>
+    <p class="section-title">LIVE MATCHES (757)</p>
+    <div class="match-card">
+        <div class="match-header"><i class="fas fa-futbol" style="color: #4caf50;"></i> Football - UEFA</div>
+        <div class="match-row"><span>Real Madrid</span> <span>2</span></div>
+        <div class="match-row"><span>Man City</span> <span>1</span></div>
+    </div>
+
+    <p class="section-title">| Rxbetgame</p>
+    <div class="demo-card">
+        <h3 style="color: #2e7d32; margin-bottom: 10px;"><i class="fas fa-bat-ball"></i> Cricket Demo</h3>
+        <button class="play-btn btn-gold">Play Free</button>
+    </div>
+
+    <div class="demo-card">
+        <h3 style="color: #e91e63; margin-bottom: 10px;"><i class="fas fa-slot-machine"></i> Casino Demo</h3>
+        <button class="play-btn btn-pink">Try Now</button>
+    </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2>Login</h2>
+            <input type="text" placeholder="Username">
+            <input type="password" placeholder="Password">
+            <button class="play-btn btn-gold" onclick="toggleModal('loginModal')">Sign In</button>
+        </div>
+    </div>
+
+    <div id="regModal" class="modal">
+        <div class="modal-content">
+            <h2>Registration</h2>
+            <input type="text" placeholder="Full Name">
+            <input type="email" placeholder="Email">
+            <button class="play-btn btn-pink" onclick="toggleModal('regModal')">Register</button>
         </div>
     </div>
 
     <nav class="bottom-nav">
-        <a href="#" class="nav-item">🏆<br>Sports</a>
-        <a href="#" class="nav-item">🎰<br>Casino</a>
-        <a href="#" class="nav-item"><div class="bet-slip">📝</div>Bet Slip</a>
-        <a href="#" class="nav-item">👤<br>Log in</a>
-        <a href="#" class="nav-item">☰<br>Menu</a>
+        <div class="nav-item"><i class="fas fa-trophy" style="color: #f3ba2f;"></i>Sports</div>
+        <div class="nav-item"><i class="fas fa-dice" style="color: #ff5722;"></i>Casino</div>
+        <div class="nav-item" onclick="toggleModal('loginModal')"><i class="fas fa-user-circle" style="color: #03a9f4;"></i>Profile</div>
+        <div class="nav-item"><i class="fas fa-bars" style="color: #607d8b;"></i>Menu</div>
     </nav>
 
+    <script>
+        function toggleModal(id) {
+            var m = document.getElementById(id);
+            m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
+        }
+    </script>
 </body>
 </html>
