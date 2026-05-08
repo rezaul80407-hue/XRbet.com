@@ -3,77 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XRbet.com - শ্রেষ্ঠ গেমিং পোর্টাল</title>
+    <title>XRbet - Gates of Olympus</title>
     <style>
-        /* CSS অংশ - এটি আপনার সাইটকে সুন্দর করবে */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #0f172a;
+            background-color: #0b0e11;
             color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .header {
+            width: 100%;
+            padding: 15px;
+            background-color: #1a1d23;
+            color: #f3ba2f;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 2px solid #f3ba2f;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .game-section {
+            margin-top: 40px;
+            width: 90%;
+            max-width: 400px;
+            background: #1e2329;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: 0.3s;
+        }
+        .game-section img {
+            width: 100%;
+            height: auto;
+        }
+        .game-details {
+            padding: 20px;
             text-align: center;
         }
-        header {
-            background: linear-gradient(90deg, #1e293b, #334155);
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        .game-name {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
-        .logo {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #38bdf8;
-            text-transform: uppercase;
-        }
-        .container {
-            padding: 50px 20px;
-        }
-        h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #94a3b8;
-            margin-bottom: 30px;
-        }
-        .btn {
-            background-color: #38bdf8;
-            color: #0f172a;
-            padding: 15px 30px;
+        .play-now {
+            display: inline-block;
+            background: linear-gradient(180deg, #f3ba2f 0%, #d9a520 100%);
+            color: #000;
+            padding: 14px 40px;
             text-decoration: none;
             font-weight: bold;
-            border-radius: 50px;
-            font-size: 1.2em;
-            transition: 0.3s;
-            display: inline-block;
+            border-radius: 10px;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(243, 186, 47, 0.3);
         }
-        .btn:hover {
-            background-color: #7dd3fc;
+        .play-now:hover {
             transform: scale(1.05);
+            background: #f3ba2f;
         }
         .footer {
-            margin-top: 50px;
-            font-size: 0.8em;
-            color: #475569;
+            margin-top: auto;
+            padding: 20px;
+            color: #5e6673;
+            font-size: 12px;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">XRbet.com</div>
-    </header>
+    <div class="header">XRbet.com</div>
 
-    <div class="container">
-        <h1>স্বাগতম আমাদের গেমিং পোর্টালে</h1>
-        <p>সেরা গেম এবং দারুণ অভিজ্ঞতার জন্য আজই যুক্ত হোন।</p>
-        <a href="#" class="btn">এখনই খেলা শুরু করুন</a>
+    <div class="game-section">
+        <img src="https://socialtournament.app/wp-content/uploads/2021/02/Gates-of-Olympus-Logo.jpg" alt="Gates of Olympus">
+        <div class="game-details">
+            <div class="game-name">Gates of Olympus</div>
+            <a href="https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20olympgate&lang=en&cur=USD" class="play-now">এখনই খেলুন</a>
+        </div>
     </div>
 
     <div class="footer">
-        &copy; 2026 XRbet.com | সর্বস্বত্ব সংরক্ষিত
+        &copy; 2026 XRbet.com | গেমটি শুধুমাত্র বিনোদনের জন্য
     </div>
 
 </body>
 </html>
-
