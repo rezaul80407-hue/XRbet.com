@@ -747,7 +747,6 @@ function placeBet(team){
 function showMessage(msg){
     alert(msg);
 }
-
 <script>
 // ১. API এর তথ্য
 const options = {
@@ -755,7 +754,7 @@ const options = {
     headers: {
         'x-rapidapi-key': 'c764d24e32msha6856111d67d95bp1ae795bb60fda',
         'x-rapidapi-host': 'cricbuzz-cricket.p.rapidapi.com'
-    }p
+    }
 };
 
 // ২. ডাটা টেনে আপনার কার্ডে বসানোর ফাংশন
@@ -766,7 +765,7 @@ async function loadLiveScore() {
         
         console.log("API Result:", result);
 
-        if (result.matchHeader) {
+        if (result && result.matchHeader) {
             // আপনার HTML ID অনুযায়ী ডাটা বসানো হচ্ছে
             const t1 = document.getElementById('team1');
             const t2 = document.getElementById('team2');
@@ -786,7 +785,7 @@ async function loadLiveScore() {
 // ৩. সাইট ওপেন করলেই যেন স্কোর লোড হয়
 loadLiveScore();
 
-// প্রতি ৩০ সেকেন্ড পরপর ডাটা আপডেট হবে
+// প্রতি ৩০ সেকেন্ড পরপর ডাটা অটো আপডেট হবে
 setInterval(loadLiveScore, 30000);
 </script>
 
