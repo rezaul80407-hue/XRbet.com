@@ -748,7 +748,44 @@ function showMessage(msg){
     alert(msg);
 }
 
+<script>
+// ১. API এর তথ্য
+const options = {
+    method: 'GET',
+    headers: {
+        'x-rapidapi-key': 'c764d24e32msha6856111d67d95bp1ae795bb60fda',
+        'x-rapidapi-host': 'cricbuzz-cricket.p.rapidapi.com'
+    }
+};
+
+// ২. ডাটা টেনে আপনার কার্ডে বসানোর ফাংশন
+async function loadLiveScore() {
+    try {
+        const response = await fetch('https://cricbuzz-cricket.p.rapidapi.com/mcenter/v1/40381/hscard', options);
+        const result = await response.json();
+        
+        if (result.matchHeader) {
+            // কার্ডের টিম ১ এবং ২ এর নাম আপডেট
+            document.getElementById('team1').innerText = result.matchHeader.team1.name;
+            document.getElementById('team2').innerText = result.matchHeader.team2.name;
+            
+            // লাইভ স্কোর বা স্ট্যাটাস আপডেট
+            document.getElementById('score').innerText = result.status;
+            
+            console.log("লাইভ স্কোর আপডেট হয়েছে!");
+        }
+    } catch (error) {
+        console.error("এপিআই কানেকশনে সমস্যা:", error);
+    }
+}
+
+// ৩. সাইট ওপেন করলেই যেন স্কোর লোড হয়
+loadLiveScore();
 </script>
+
+</body>
+</html>
+
 
 </body>
 </html>
