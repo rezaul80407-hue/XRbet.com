@@ -1,165 +1,754 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XRbet - White Colorful Edition</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-body: #f4f6f8;
-            --pure-white: #ffffff;
-            --text-main: #202124;
-            --accent-gold: #f3ba2f;
-            --pink: #e91e63;
-            --border-light: #e0e4e9;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>X-BET PRO MOBILE</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--bg-body); color: var(--text-main); padding-bottom: 80px; }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
-        /* হেডার (ডার্ক রাখা হয়েছে যাতে লোগো ফুটে ওঠে) */
-        header { 
-            background: #1a1d23; padding: 12px 15px; 
-            display: flex; justify-content: space-between; align-items: center; 
-            position: sticky; top: 0; z-index: 1000;
-        }
-        .logo { color: var(--accent-gold); font-size: 22px; font-weight: 900; }
+<style>
 
-        .auth-btns button { padding: 8px 14px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; }
-        .login-btn { background: #3c4043; color: #fff; margin-right: 5px; }
-        .reg-btn { background: var(--pink); color: #fff; }
+:root{
+    --bg:#08111b;
+    --card:#131f2c;
+    --card2:#1d2d3d;
+    --blue:#00a2ff;
+    --gold:#ffc400;
+    --green:#11c96d;
+    --red:#ff3b3b;
+    --white:#ffffff;
+}
 
-        /* সাদা ব্যাকগ্রাউন্ডে রঙিন আইকন */
-        .categories { 
-            display: flex; overflow-x: auto; padding: 20px 10px; gap: 15px; 
-            scrollbar-width: none; background: var(--pure-white); 
-            margin-bottom: 10px; border-bottom: 1px solid var(--border-light);
-        }
-        .cat-item { text-align: center; min-width: 70px; cursor: pointer; }
-        .icon-box { 
-            width: 55px; height: 55px; background: #fff; border-radius: 14px; 
-            display: flex; align-items: center; justify-content: center; 
-            margin: 0 auto 8px; font-size: 26px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border: 1px solid #f0f0f0;
-        }
-        
-        /* লোগোর কালারগুলো */
-        .color-crash { color: #ff4500; }    /* উজ্জ্বল কমলা */
-        .color-crystal { color: #00bcd4; }  /* সায়ান */
-        .color-casino { color: #9c27b0; }   /* পার্পল */
-        .color-cricket { color: #2e7d32; }  /* ডিপ গ্রিন */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
 
-        .cat-item p { font-size: 11px; color: #5f6368; font-weight: 600; }
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--bg);
+    color:white;
+    overflow-x:hidden;
+}
 
-        /* লাইভ ম্যাচ কার্ড */
-        .section-title { padding: 10px 15px; font-size: 15px; font-weight: bold; color: #1a1d23; }
-        .match-card { background: var(--pure-white); border-radius: 12px; padding: 15px; margin: 0 15px 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid var(--border-light); }
-        .match-header { font-size: 12px; color: #70757a; display: flex; align-items: center; gap: 5px; margin-bottom: 10px; }
-        .match-row { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 5px; color: #000; }
+/* HEADER */
 
-        /* ডেমো গেম কার্ড */
-        .demo-card { 
-            background: var(--pure-white); border-radius: 15px; padding: 20px; 
-            margin: 0 15px 15px; text-align: center; border: 1px solid var(--border-light);
-        }
-        .play-btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: bold; margin-top: 10px; cursor: pointer; }
-        .btn-gold { background: var(--accent-gold); color: #000; }
-        .btn-pink { background: var(--pink); color: #fff; }
+.header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:65px;
+    background:#101923;
+    display:flex;
+    align-items:center;
+    padding:0 15px;
+    z-index:1000;
+    border-bottom:1px solid #223040;
+}
 
-        /* পপ-আপ ফর্ম */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center; }
-        .modal-content { background: var(--pure-white); padding: 25px; border-radius: 15px; width: 85%; max-width: 350px; text-align: center; }
-        .modal-content input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px; }
+.menu-btn{
+    font-size:24px;
+    margin-right:15px;
+    cursor:pointer;
+}
 
-        /* বটম মেনু (সাদা থিমে রঙিন আইকন) */
-        .bottom-nav { 
-            position: fixed; bottom: 0; width: 100%; background: var(--pure-white); 
-            display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid var(--border-light);
-        }
-        .nav-item { text-align: center; color: #5f6368; font-size: 11px; font-weight: 500; }
-        .nav-item i { font-size: 22px; display: block; margin-bottom: 4px; }
-    </style>
+.logo{
+    flex:1;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:22px;
+    font-weight:bold;
+    color:var(--blue);
+}
+
+.logo img{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid var(--blue);
+}
+
+.header-buttons{
+    display:flex;
+    gap:8px;
+}
+
+.header-buttons button{
+    border:none;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.login-btn{
+    background:var(--blue);
+    color:white;
+}
+
+.register-btn{
+    background:var(--gold);
+    color:black;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    position:fixed;
+    left:-100%;
+    top:0;
+    width:290px;
+    height:100%;
+    background:#121d28;
+    z-index:2000;
+    transition:.3s;
+    overflow-y:auto;
+}
+
+.sidebar.active{
+    left:0;
+}
+
+.sidebar-top{
+    padding:25px 20px;
+    background:#0d151d;
+    border-bottom:1px solid #273546;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.profile img{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    border:2px solid var(--blue);
+}
+
+.profile h3{
+    font-size:18px;
+}
+
+.profile p{
+    font-size:12px;
+    color:#999;
+}
+
+.sidebar a{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    color:white;
+    text-decoration:none;
+    padding:17px 20px;
+    border-bottom:1px solid #1d2b39;
+    transition:.2s;
+}
+
+.sidebar a:hover{
+    background:#1b2b3c;
+}
+
+.sidebar a i{
+    color:var(--blue);
+    width:25px;
+}
+
+.overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.7);
+    top:0;
+    left:0;
+    display:none;
+    z-index:1500;
+}
+
+.overlay.active{
+    display:block;
+}
+
+/* MAIN */
+
+.main{
+    padding:80px 15px 120px;
+}
+
+/* BANNER */
+
+.banner{
+    position:relative;
+    height:180px;
+    border-radius:18px;
+    overflow:hidden;
+    margin-bottom:18px;
+}
+
+.banner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.banner-content{
+    position:absolute;
+    left:20px;
+    bottom:20px;
+}
+
+.banner-content h1{
+    font-size:28px;
+    margin-bottom:5px;
+}
+
+.banner-content p{
+    font-size:13px;
+    color:#ddd;
+}
+
+.play-btn{
+    margin-top:10px;
+    background:var(--blue);
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:25px;
+    font-weight:bold;
+}
+
+/* TABS */
+
+.tabs{
+    display:flex;
+    gap:10px;
+    overflow:auto;
+    margin-bottom:18px;
+}
+
+.tabs::-webkit-scrollbar{
+    display:none;
+}
+
+.tab{
+    padding:10px 18px;
+    background:#13202d;
+    border-radius:30px;
+    white-space:nowrap;
+    border:1px solid #243547;
+    cursor:pointer;
+}
+
+.tab.active{
+    background:var(--blue);
+}
+
+/* MATCH CARD */
+
+.match-card{
+    background:var(--card);
+    border-radius:18px;
+    padding:15px;
+    margin-bottom:15px;
+    border:1px solid #223243;
+}
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
+    font-size:12px;
+    color:#aaa;
+}
+
+.live{
+    color:var(--green);
+    font-weight:bold;
+}
+
+.teams{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
+}
+
+.team{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.team img{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    object-fit:cover;
+    background:white;
+}
+
+.team-name{
+    font-size:16px;
+    font-weight:bold;
+}
+
+.vs{
+    font-size:18px;
+    color:var(--gold);
+}
+
+/* ODDS */
+
+.odds{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.odd{
+    background:#0c151e;
+    padding:12px;
+    border-radius:10px;
+    text-align:center;
+    border:1px solid #2d3f52;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.odd:hover{
+    background:var(--blue);
+    transform:scale(.96);
+}
+
+.odd small{
+    color:#aaa;
+}
+
+.odd h2{
+    color:var(--gold);
+    margin-top:4px;
+    font-size:18px;
+}
+
+/* CASINO */
+
+.casino-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-top:20px;
+}
+
+.casino-card{
+    background:var(--card2);
+    border-radius:15px;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.casino-card img{
+    width:100%;
+    height:120px;
+    object-fit:cover;
+}
+
+.casino-card h3{
+    padding:12px;
+    text-align:center;
+}
+
+/* FLOAT */
+
+.bet-btn{
+    position:fixed;
+    right:20px;
+    bottom:25px;
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:var(--blue);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    box-shadow:0 8px 20px rgba(0,0,0,.5);
+    z-index:999;
+    cursor:pointer;
+}
+
+/* LOGIN MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.8);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:3000;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.login-box{
+    width:90%;
+    max-width:350px;
+    background:#12202d;
+    padding:25px;
+    border-radius:18px;
+}
+
+.login-box h2{
+    margin-bottom:20px;
+    text-align:center;
+}
+
+.input-group{
+    margin-bottom:15px;
+}
+
+.input-group input{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:10px;
+    background:#0b141c;
+    color:white;
+}
+
+.submit-btn{
+    width:100%;
+    border:none;
+    background:var(--blue);
+    color:white;
+    padding:13px;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.close-modal{
+    margin-top:10px;
+    background:var(--red);
+}
+
+</style>
 </head>
-<body>r
 
-    <header>
-        <div class="logo">XRBET 🚩</div>
-        <div class="auth-btns">
-            <button class="login-btn" onclick="toggleModal('loginModal')">Log in</button>
-            <button class="reg-btn" onclick="toggleModal('regModal')">Registration</button>
-        </div>
-    </header>
+<body>
 
-    <div class="categories">
-        <div class="cat-item">
-            <div class="icon-box color-crash"><i class="fas fa-rocket"></i></div>
-            <p>Crash</p>
-        </div>
-        <div class="cat-item">
-            <div class="icon-box color-crystal"><i class="fas fa-gem"></i></div>
-            <p>Crystal</p>
-        </div>
-        <div class="cat-item">
-            <div class="icon-box color-casino"><i class="fas fa-dice"></i></div>
-            <p>Casino</p>
-        </div>
-        <div class="cat-item">
-            <div class="icon-box color-cricket"><i class="fas fa-baseball-ball"></i></div>
-            <p>Cricket</p>
-        </div>
-    </div>
+<!-- HEADER -->
 
-    <p class="section-title">LIVE MATCHES (757)</p>
-    <div class="match-card">
-        <div class="match-header"><i class="fas fa-futbol" style="color: #4caf50;"></i> Football - UEFA</div>
-        <div class="match-row"><span>Real Madrid</span> <span>2</span></div>
-        <div class="match-row"><span>Man City</span> <span>1</span></div>
-    </div>
+<header class="header">
 
-    <p class="section-title">| Rxbetgame</p>
-    <div class="demo-card">
-        <h3 style="color: #2e7d32; margin-bottom: 10px;"><i class="fas fa-bat-ball"></i> Cricket Demo</h3>
-        <button class="play-btn btn-gold">Play Free</button>
-    </div>
+<div class="menu-btn" id="menuBtn">
+<i class="fas fa-bars"></i>
+</div>
 
-    <div class="demo-card">
-        <h3 style="color: #e91e63; margin-bottom: 10px;"><i class="fas fa-slot-machine"></i> Casino Demo</h3>
-        <button class="play-btn btn-pink">Try Now</button>
-    </div>
+<div class="logo">
+<img src="https://i.imgur.com/8Km9tLL.png">
+<span>X-BET PRO</span>
+</div>
 
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <h2>Login</h2>
-            <input type="text" placeholder="Username">
-            <input type="password" placeholder="Password">
-            <button class="play-btn btn-gold" onclick="toggleModal('loginModal')">Sign In</button>
-        </div>
-    </div>
+<div class="header-buttons">
+<button class="login-btn" onclick="openLogin()">Login</button>
+<button class="register-btn" onclick="openLogin()">Register</button>
+</div>
 
-    <div id="regModal" class="modal">
-        <div class="modal-content">
-            <h2>Registration</h2>
-            <input type="text" placeholder="Full Name">
-            <input type="email" placeholder="Email">
-            <button class="play-btn btn-pink" onclick="toggleModal('regModal')">Register</button>
-        </div>
-    </div>
+</header>
 
-    <nav class="bottom-nav">
-        <div class="nav-item"><i class="fas fa-trophy" style="color: #f3ba2f;"></i>Sports</div>
-        <div class="nav-item"><i class="fas fa-dice" style="color: #ff5722;"></i>Casino</div>
-        <div class="nav-item" onclick="toggleModal('loginModal')"><i class="fas fa-user-circle" style="color: #03a9f4;"></i>Profile</div>
-        <div class="nav-item"><i class="fas fa-bars" style="color: #607d8b;"></i>Menu</div>
-    </nav>
+<!-- SIDEBAR -->
 
-    <script>
-        function toggleModal(id) {
-            var m = document.getElementById(id);
-            m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
-        }
-    </script>
+<div class="overlay" id="overlay"></div>
+
+<div class="sidebar" id="sidebar">
+
+<div class="sidebar-top">
+<div class="profile">
+<img src="https://i.imgur.com/8Km9tLL.png">
+<div>
+<h3>X-BET VIP</h3>
+<p>Premium Betting Platform</p>
+</div>
+</div>
+</div>
+
+<a href="#" onclick="showMessage('Home Page Opened')">
+<i class="fas fa-home"></i> Home
+</a>
+
+<a href="#" onclick="showMessage('Live Sports Opened')">
+<i class="fas fa-broadcast-tower"></i> Live Sports
+</a>
+
+<a href="#" onclick="showMessage('Football Section Opened')">
+<i class="fas fa-futbol"></i> Football
+</a>
+
+<a href="#" onclick="showMessage('Basketball Section Opened')">
+<i class="fas fa-basketball-ball"></i> Basketball
+</a>
+
+<a href="#" onclick="showMessage('Casino Section Opened')">
+<i class="fas fa-dice"></i> Live Casino
+</a>
+
+<a href="#" onclick="showMessage('Slots Section Opened')">
+<i class="fas fa-coins"></i> Slots
+</a>
+
+<a href="#" onclick="openLogin()">
+<i class="fas fa-user"></i> Login
+</a>
+
+<a href="#" onclick="showMessage('Logged Out')">
+<i class="fas fa-power-off"></i> Logout
+</a>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+<!-- BANNER -->
+
+<div class="banner">
+<img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1200&auto=format&fit=crop">
+<div class="banner-content">
+<h1>LIVE BETTING</h1>
+<p>Play Casino, Sports & Win Big Rewards</p>
+<button class="play-btn" onclick="openLogin()">PLAY NOW</button>
+</div>
+</div>
+
+<!-- TABS -->
+
+<div class="tabs">
+<div class="tab active">Football</div>
+<div class="tab">Cricket</div>
+<div class="tab">Casino</div>
+<div class="tab">Tennis</div>
+<div class="tab">Esports</div>
+</div>
+
+<!-- MATCH -->
+
+<div class="match-card">
+
+<div class="card-top">
+<span>UEFA CHAMPIONS LEAGUE</span>
+<span class="live">● LIVE 82'</span>
+</div>
+
+<div class="teams">
+
+<div class="team">
+<img src="https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg">
+<div class="team-name">Manchester City</div>
+</div>
+
+<div class="vs">VS</div>
+
+<div class="team">
+<img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg">
+<div class="team-name">Real Madrid</div>
+</div>
+
+</div>
+
+<div class="odds">
+
+<div class="odd" onclick="placeBet('Manchester City')">
+<small>W1</small>
+<h2>1.85</h2>
+</div>
+
+<div class="odd" onclick="placeBet('Draw')">
+<small>X</small>
+<h2>3.60</h2>
+</div>
+
+<div class="odd" onclick="placeBet('Real Madrid')">
+<small>W2</small>
+<h2>4.20</h2>
+</div>
+
+</div>
+
+</div>
+
+<!-- MATCH -->
+
+<div class="match-card">
+
+<div class="card-top">
+<span>IPL T20</span>
+<span class="live">● LIVE 14.2 OV</span>
+</div>
+
+<div class="teams">
+
+<div class="team">
+<img src="https://i.imgur.com/3QZQZ9S.png">
+<div class="team-name">KKR</div>
+</div>
+
+<div class="vs">VS</div>
+
+<div class="team">
+<img src="https://i.imgur.com/xo8YQwM.png">
+<div class="team-name">Mumbai</div>
+</div>
+
+</div>
+
+<div class="odds">
+
+<div class="odd" onclick="placeBet('KKR')">
+<small>1</small>
+<h2>2.15</h2>
+</div>
+
+<div class="odd" onclick="placeBet('Draw')">
+<small>X</small>
+<h2>--</h2>
+</div>
+
+<div class="odd" onclick="placeBet('Mumbai')">
+<small>2</small>
+<h2>1.78</h2>
+</div>
+
+</div>
+
+</div>
+
+<!-- CASINO -->
+
+<h2 style="margin:20px 0 15px;">Popular Casino</h2>
+
+<div class="casino-grid">
+
+<div class="casino-card" onclick="openLogin()">
+<img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop">
+<h3>Live Roulette</h3>
+</div>
+
+<div class="casino-card" onclick="openLogin()">
+<img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?q=80&w=1200&auto=format&fit=crop">
+<h3>Blackjack</h3>
+</div>
+
+</div>
+
+</div>
+
+<!-- FLOAT -->
+
+<div class="bet-btn" onclick="showMessage('Bet Slip Opened')">
+<i class="fas fa-ticket-alt"></i>
+</div>
+
+<!-- LOGIN MODAL -->
+
+<div class="modal" id="loginModal">
+
+<div class="login-box">
+
+<h2>LOGIN ACCOUNT</h2>
+
+<div class="input-group">
+<input type="text" placeholder="Username">
+</div>
+
+<div class="input-group">
+<input type="password" placeholder="Password">
+</div>
+
+<button class="submit-btn" onclick="loginSuccess()">
+LOGIN NOW
+</button>
+
+<button class="submit-btn close-modal" onclick="closeLogin()">
+CLOSE
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+/* MENU */
+
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+
+menuBtn.onclick = () => {
+    sidebar.classList.add("active");
+    overlay.classList.add("active");
+};
+
+overlay.onclick = () => {
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+};
+
+/* TABS */
+
+document.querySelectorAll(".tab").forEach(tab=>{
+    tab.onclick = function(){
+        document.querySelector(".tab.active").classList.remove("active");
+        this.classList.add("active");
+        showMessage(this.innerText + " Selected");
+    }
+});
+
+/* LOGIN */
+
+const loginModal = document.getElementById("loginModal");
+
+function openLogin(){
+    loginModal.classList.add("active");
+}
+
+function closeLogin(){
+    loginModal.classList.remove("active");
+}
+
+function loginSuccess(){
+    alert("Login Successful!");
+    closeLogin();
+}
+
+/* BET */
+
+function placeBet(team){
+    alert("Bet Added: " + team);
+}
+
+/* MESSAGE */
+
+function showMessage(msg){
+    alert(msg);
+}
+
+</script>
+
 </body>
 </html>
-
