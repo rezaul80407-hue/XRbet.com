@@ -747,8 +747,8 @@ function showMessage(msg){
 // API options
 const options = {
     method: 'GET',
-    headers: {
-        'x-rapidapi-key': 'YOUR_API_KEY_38fe7ec9-e3ba-4d9a-b938-c6c5836c36ad',
+    headers:
+        'x-rapidapi-key': '38fe7ec9-e3ba-4d9a-b938-c6c5836c36ad',
         'x-rapidapi-host': 'cricbuzz-cricket.p.rapidapi.com'
     }
 };
@@ -756,10 +756,7 @@ const options = {
 // Live score load function
 async function loadLiveScore() {
     try {
-        const response = await fetch(
-            'https://cricbuzz-cricket.p.rapidapi.com/matches/v1/live',
-            options
-        );
+        const response = await fetch(https://cricbuzz-cricket.p.rapidapi.com/matches/v1/live', options);
 
         const data = await response.json();
         console.log(data);
