@@ -734,59 +734,56 @@ function closeLogin(){
 function loginSuccess(){
     alert("Login Successful!");
     closeLogin();
-}
-
-/* BET */
-
+    <script>
+/* BET BUTTON */
 function placeBet(team){
     alert("Bet Added: " + team);
 }
 
-/* MESSAGE */
-
 function showMessage(msg){
     alert(msg);
 }
-<script>
-// ১. API এর তথ্য
+
+// API options
 const options = {
     method: 'GET',
     headers: {
-        'x-rapidapi-key': '38fe7ec9-e3ba-4d9a-b938-c6c5836c36ad',
+        'x-rapidapi-key': 'YOUR_API_KEY_38fe7ec9-e3ba-4d9a-b938-c6c5836c36ad',
         'x-rapidapi-host': 'cricbuzz-cricket.p.rapidapi.com'
     }
 };
 
-// ২. ডাটা টেনে আপনার কার্ডে বসানোর ফাংশন
+// Live score load function
 async function loadLiveScore() {
     try {
-        const response = await fetch('https://cricbuzz-cricket.p.rapidapi.com/mcenter/v1/40381/hscard', options);
-        const result = await response.json();
-        
-        console.log("API Result:", result);
+        const response = await fetch(
+            'https://cricbuzz-cricket.p.rapidapi.com/matches/v1/live',
+            options
+        );
 
-        if (result && result.matchHeader) {
-            // আপনার HTML ID অনুযায়ী ডাটা বসানো হচ্ছে
-            const t1 = document.getElementById('team1');
-            const t2 = document.getElementById('team2');
-            const sc = document.getElementById('score');
+        const data = await response.json();
+        console.log(data);
 
-            if(t1) t1.innerText = result.matchHeader.team1.name;
-            if(t2) t2.innerText = result.matchHeader.team2.name;
-            if(sc) sc.innerText = result.status;
-            
-            console.log("লাইভ স্কোর আপডেট হয়েছে!");
+        const match = data?.typeMatches?.[0]?.seriesMatches?.[0]?.matches?.[0];
+
+        if(match){
+            const team1 = match.matchInfo.team1.teamName;
+            const team2 = match.matchInfo.team2.teamName;
+
+            document.getElementById("score").innerText =
+                team1 + " vs " + team2;
+        } else {
+            document.getElementById("score").innerText = "No live match";
         }
+
     } catch (error) {
-        console.error("এপিআই কানেকশনে সমস্যা:", error);
+        console.error("Error loading live score:", error);
+        showMessage("Live score load failed");
     }
 }
 
-// ৩. সাইট ওপেন করলেই যেন স্কোর লোড হয়
+// auto load
 loadLiveScore();
-
-// প্রতি ৩০ সেকেন্ড পরপর ডাটা অটো আপডেট হবে
-setInterval(loadLiveScore, 30000);
 </script>
 
 </body>
