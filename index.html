@@ -1,43 +1,435 @@
-<script>
-// ১. লগইন এবং মেনু কন্ট্রোল
-const loginModal = document.getElementById("loginModal");
-function openLogin(){ loginModal.classList.add("active"); }
-function closeLogin(){ loginModal.classList.remove("active"); }
-function loginSuccess(){ alert("Login Successful!"); closeLogin(); }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X-BET PRO MOBILE</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{
+    --bg:#08111b;
+    --card:#131f2c;
+    --card2:#1d2d3d;
+    --blue:#00a2ff;
+    --gold:#ffc400;
+    --green:#11c96d;
+    --red:#ff3b3b;
+    --white:#ffffff;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--bg);
+    color:white;
+    overflow-x:hidden;
+}
+.header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:65px;
+    background:#101923;
+    display:flex;
+    align-items:center;
+    padding:0 15px;
+    z-index:1000;
+    border-bottom:1px solid #223040;
+}
+.menu-btn{
+    font-size:24px;
+    margin-right:15px;
+    cursor:pointer;
+}
+.logo{
+    flex:1;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:22px;
+    font-weight:bold;
+    color:var(--blue);
+}
+.logo img{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid var(--blue);
+}
+.header-buttons{
+    display:flex;
+    gap:8px;
+}
+.header-buttons button{
+    border:none;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+    cursor:pointer;
+}
+.login-btn{
+    background:var(--blue);
+    color:white;
+}
+.register-btn{
+    background:var(--gold);
+    color:black;
+}
+.sidebar{
+    position:fixed;
+    left:-100%;
+    top:0;
+    width:290px;
+    height:100%;
+    background:#121d28;
+    z-index:2000;
+    transition:.3s;
+    overflow-y:auto;
+}
+.sidebar.active{
+    left:0;
+}
+.sidebar-top{
+    padding:25px 20px;
+    background:#0d151d;
+    border-bottom:1px solid #273546;
+}
+.profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+.profile img{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    border:2px solid var(--blue);
+}
+.sidebar a{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    color:white;
+    text-decoration:none;
+    padding:17px 20px;
+    border-bottom:1px solid #1d2b39;
+}
+.sidebar a i{
+    color:var(--blue);
+    width:25px;
+}
+.overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.7);
+    top:0;
+    left:0;
+    display:none;
+    z-index:1500;
+}
+.overlay.active{
+    display:block;
+}
+.main{
+    padding:80px 15px 120px;
+}
+.banner{
+    position:relative;
+    height:180px;
+    border-radius:18px;
+    overflow:hidden;
+    margin-bottom:18px;
+}
+.banner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.banner-content{
+    position:absolute;
+    left:20px;
+    bottom:20px;
+}
+.banner-content h1{
+    font-size:28px;
+    margin-bottom:5px;
+}
+.play-btn{
+    margin-top:10px;
+    background:var(--blue);
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:25px;
+    font-weight:bold;
+    cursor:pointer;
+}
+.match-card{
+    background:var(--card);
+    border-radius:18px;
+    padding:15px;
+    margin-bottom:15px;
+    border:1px solid #223243;
+}
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
+    font-size:12px;
+    color:#aaa;
+}
+.live{
+    color:var(--green);
+    font-weight:bold;
+}
+.teams{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
+}
+.team{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.team img{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    object-fit:cover;
+    background:white;
+}
+.team-name{
+    font-size:16px;
+    font-weight:bold;
+}
+.vs{
+    font-size:18px;
+    color:var(--gold);
+}
+.odds{
+    display:grid;
+    grid-template-columns:repeat(1,1fr);
+    gap:10px;
+}
+.odd{
+    background:#0c151e;
+    padding:12px;
+    border-radius:10px;
+    text-align:center;
+    border:1px solid #2d3f52;
+}
+.odd h2{
+    color:var(--gold);
+    margin-top:4px;
+    font-size:18px;
+}
+.bet-btn{
+    position:fixed;
+    right:20px;
+    bottom:25px;
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:var(--blue);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    z-index:999;
+    cursor:pointer;
+}
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.8);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:3000;
+}
+.modal.active{
+    display:flex;
+}
+.login-box{
+    width:90%;
+    max-width:350px;
+    background:#12202d;
+    padding:25px;
+    border-radius:18px;
+}
+.login-box h2{
+    margin-bottom:20px;
+    text-align:center;
+}
+.input-group input{
+    width:100%;
+    padding:13px;
+    margin-bottom:15px;
+    border-radius:10px;
+    background:#0b141c;
+    color:white;
+    border:none;
+}
+.submit-btn{
+    width:100%;
+    background:var(--blue);
+    color:white;
+    padding:13px;
+    border-radius:10px;
+    font-weight:bold;
+    border:none;
+    margin-bottom:10px;
+    cursor:pointer;
+}
+.close-btn{
+    background:var(--red);
+}
+</style>
+</head>
+<body>
 
-// ২. ক্রিকেট লাইভ স্কোর এপিআই কনফিগারেশন
+<header class="header">
+    <div class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></div>
+    <div class="logo">
+        <img src="https://i.imgur.com/8Km9tLL.png" alt="logo">
+        <span>X-BET PRO</span>
+    </div>
+    <div class="header-buttons">
+        <button class="login-btn" onclick="openLogin()">Login</button>
+        <button class="register-btn" onclick="openLogin()">Register</button>
+    </div>
+</header>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+        <div class="profile">
+            <img src="https://i.imgur.com/8Km9tLL.png" alt="profile">
+            <div>
+                <h3>X-BET VIP</h3>
+                <p>Premium Betting Platform</p>
+            </div>
+        </div>
+    </div>
+    <a href="#"><i class="fas fa-home"></i> Home</a>
+    <a href="#"><i class="fas fa-broadcast-tower"></i> Live Sports</a>
+    <a href="#"><i class="fas fa-dice"></i> Live Casino</a>
+    <a href="#"><i class="fas fa-futbol"></i> Football</a>
+    <a href="#"><i class="fas fa-baseball-ball"></i> Cricket</a>
+</div>
+
+<div class="main">
+    <div class="banner">
+        <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1200&auto=format&fit=crop" alt="banner">
+        <div class="banner-content">
+            <h1>LIVE BETTING</h1>
+            <p>Play Casino & Sports</p>
+            <button class="play-btn" onclick="openLogin()">PLAY NOW</button>
+        </div>
+    </div>
+
+    <div class="match-card">
+        <div class="card-top">
+            <span>CRICKET LIVE SCORE</span>
+            <span class="live" id="live-status">● LIVE</span>
+        </div>
+        <div class="teams">
+            <div class="team">
+                <img src="https://i.imgur.com/3QZQZ9S.png" alt="team1" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1041/1041168.png'">
+                <div class="team-name" id="team1">Loading...</div>
+            </div>
+            <div class="vs">VS</div>
+            <div class="team">
+                <img src="https://i.imgur.com/xo8YQwM.png" alt="team2" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1041/1041168.png'">
+                <div class="team-name" id="team2">Loading...</div>
+            </div>
+        </div>
+        <div class="odds">
+            <div class="odd">
+                <small>LIVE SCORE</small>
+                <h2 id="score-val">Loading...</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bet-btn" onclick="alert('Bet Slip Opened')"><i class="fas fa-ticket-alt"></i></div>
+
+<div class="modal" id="loginModal">
+    <div class="login-box">
+        <h2>LOGIN ACCOUNT</h2>
+        <div class="input-group"><input type="text" placeholder="Username"></div>
+        <div class="input-group"><input type="password" placeholder="Password"></div>
+        <button class="submit-btn" onclick="loginSuccess()">LOGIN NOW</button>
+        <button class="submit-btn close-btn" onclick="closeLogin()">CLOSE</button>
+    </div>
+</div>
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+const loginModal = document.getElementById('loginModal');
+
+menuBtn.onclick = () => { sidebar.classList.add('active'); overlay.classList.add('active'); };
+overlay.onclick = () => { sidebar.classList.remove('active'); overlay.classList.remove('active'); };
+function openLogin(){ loginModal.classList.add('active'); }
+function closeLogin(){ loginModal.classList.remove('active'); }
+function loginSuccess(){ alert('Login Successful!'); closeLogin(); }
+
 const options = {
     method: 'GET',
     headers: {
-        'x-rapidapi-key': 'c764d24e32msha6856111d67d95bp1ae7dcjsn19795bb60fda',
-        'x-rapidapi-host': 'cricbuzz-cricket.p.rapidapi.com'
+        'x-rapidapi-key': `c764d24e32msha6856111d67d95bp1a90c1jsn7d3910c2c431`,
+        'x-rapidapi-host': `cricbuzz-cricket.p.rapidapi.com`
     }
 };
 
-// ৩. লাইভ স্কোর লোড করার আসল ফাংশন
-async function loadLiveScore() {
+async function loadLiveScore(){
     try {
-        const response = await fetch('https://cricbuzz-cricket.p.rapidapi.com/matches/v1/live', options);
+        const response = await fetch(`https://cricbuzz-cricket.p.rapidapi.com/matches/v1/live`, options);
         const data = await response.json();
-        
-        // সঠিক ডাটা ফিল্টার (ছবি ৫৪২১০ অনুযায়ী সংশোধিত)
-        const match = data?.typeMatches?.[0]?.seriesMatches?.[0]?.seriesAdWrapper?.matches?.[0];
-
-        if (match) {
-            const t1 = document.getElementById("team1");
-            const t2 = document.getElementById("team2");
-            const scoreVal = document.getElementById("score-val");
-
-            if(t1) t1.innerText = match.matchInfo.team1.teamName;
-            if(t2) t2.innerText = match.matchInfo.team2.teamName;
-            if(scoreVal) scoreVal.innerText = match.matchScore?.team1Score?.inngs1?.runs || "Live Now";
+        let match = null;
+        for(const typeMatch of data.typeMatches || []){
+            for(const seriesMatch of typeMatch.seriesMatches || []){
+                if(seriesMatch.seriesAdWrapper?.matches?.length > 0){ match = seriesMatch.seriesAdWrapper.matches[0]; break; }
+                if(seriesMatch.matches?.length > 0){ match = seriesMatch.matches[0]; break; }
+            }
+            if(match) break;
         }
-    } catch (error) {
-        console.error("Score load failed:", error);
+        if(match){
+            document.getElementById('team1').innerText = match.matchInfo.team1.teamName;
+            document.getElementById('team2').innerText = match.matchInfo.team2.teamName;
+            document.getElementById('live-status').innerText = '● ' + match.matchInfo.status;
+            const score1 = match.matchScore?.team1Score?.inngs1;
+            const score2 = match.matchScore?.team2Score?.inngs1;
+            let scoreText = 'Match Live';
+            if(score1){ scoreText = `${score1.runs}/${score1.wickets} (${score1.overs})`; }
+            if(score2){ scoreText += ` | ${score2.runs}/${score2.wickets} (${score2.overs})`; }
+            document.getElementById('score-val').innerText = scoreText;
+        } else {
+            document.getElementById('live-status').innerText = 'No Live Match';
+            document.getElementById('score-val').innerText = 'No Data';
+        }
+    } catch(error){
+        document.getElementById('live-status').innerText = 'API Error';
+        document.getElementById('score-val').innerText = 'Failed To Load';
     }
 }
-
-// ৪. অটো রান
 loadLiveScore();
-setInterval(loadLiveScore, 60000); // প্রতি ১ মিনিট পর আপডেট হবে
+setInterval(loadLiveScore, 60000);
 </script>
+</body>
+                    </html>
+                    
